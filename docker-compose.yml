@@ -5,3 +5,6 @@ services:
         image: swissartresearx/cantaloupe:5.0
         ports:
             - ${PORT_CANTALOUPE}:8182
+        volumes:
+            - ./config:/config
+            - ./images:/images

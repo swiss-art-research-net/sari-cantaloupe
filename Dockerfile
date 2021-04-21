@@ -28,10 +28,12 @@ RUN curl --silent --fail -OL https://github.com/medusa-project/cantaloupe/releas
     && chown -R cantaloupe /cantaloupe /var/log/cantaloupe /var/cache/cantaloupe \
     && cp -rs /cantaloupe/deps/Linux-x86-64/* /usr/
 
-RUN mkdir /config
-RUN cp /cantaloupe/cantaloupe.properties.sample /config/cantaloupe.properties
+RUN mkdir /images
+
+ADD ./config /config
 
 VOLUME /config
+VOLUME /images
 
 USER cantaloupe
 
