@@ -20,13 +20,18 @@ RUN adduser --system cantaloupe
 
 RUN curl --silent --fail -OL https://github.com/cantaloupe-project/cantaloupe/releases/download/v$CANTALOUPE_VERSION/cantaloupe-$CANTALOUPE_VERSION.zip 
 
- RUN curl --silent --fail -OL https://github.com/medusa-project/cantaloupe/releases/download/v$CANTALOUPE_VERSION/Cantaloupe-$CANTALOUPE_VERSION.zip \
+RUN curl --silent --fail -OL https://github.com/medusa-project/cantaloupe/releases/download/v$CANTALOUPE_VERSION/Cantaloupe-$CANTALOUPE_VERSION.zip \
     && unzip Cantaloupe-$CANTALOUPE_VERSION.zip \
     && ln -s cantaloupe-$CANTALOUPE_VERSION cantaloupe \
     && rm cantaloupe-$CANTALOUPE_VERSION.zip \
     && mkdir -p /var/log/cantaloupe /var/cache/cantaloupe \
     && chown -R cantaloupe /cantaloupe /var/log/cantaloupe /var/cache/cantaloupe \
     && cp -rs /cantaloupe/deps/Linux-x86-64/* /usr/
+
+RUN mkdir /config
+RUN cp /cantaloupe/cantaloupe.properties.sample /config/cantaloupe.properties
+
+VOLUME /config
 
 USER cantaloupe
 
