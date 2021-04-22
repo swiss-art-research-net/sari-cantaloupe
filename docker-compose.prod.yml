@@ -10,7 +10,6 @@ services:
         - proxy
 
 networks:
-  internal:
   proxy:
     external:
       name: nginx_proxy_network
