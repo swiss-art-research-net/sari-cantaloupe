@@ -1,0 +1,5 @@
+version: "3"
+services:
+    cantaloupe:
+        ports:
+            - ${PORT_CANTALOUPE}:8182
