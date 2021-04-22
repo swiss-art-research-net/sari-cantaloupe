@@ -4,8 +4,8 @@ import sys
 import time
 from tqdm import tqdm
 
-imageFile = 'data/images.csv'
-outputFolder = './images'
+imageFile = '/data/images.csv'
+outputFolder = '/images'
 
 maxRetries = 3
 
