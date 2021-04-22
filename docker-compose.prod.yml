@@ -3,8 +3,8 @@ services:
     cantaloupe:
         environment:
             LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-            LETSENCRYPT_HOST: ${HOST_NAME}
-            VIRTUAL_HOST: ${HOST_NAME}
+            LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
+            VIRTUAL_HOST: ${LETSENCRYPT_HOST}
             VIRTUAL_PORT: 8182
         networks:
         - proxy
