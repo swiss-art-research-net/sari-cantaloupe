@@ -12,3 +12,7 @@ Copy and edit .env.example file:
 Start with `docker-compose up -d`.
 
 Place images in `images` directory.
+
+## Download images
+
+Execute the image download script via the docker container

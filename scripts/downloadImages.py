@@ -2,6 +2,7 @@ import csv
 import requests
 import sys
 import time
+import os.path
 from tqdm import tqdm
 
 imageFile = '/data/images.csv'
@@ -23,16 +24,20 @@ for row in tqdm(data[offset:offset + limit]):
     id = row['id'][len("https://resource.swissartresearch.net/artwork/"):]
     url = row['image']
     outputFile = '%s/%s.tif' % (outputFolder, id)
-    r = requests.get(url, allow_redirects=True)
-    retries = 1
-    while not 'image' in r.headers['Content-Type'] and retries <= maxRetries:
-        # Try again if no image comes back
-        time.sleep(1)
-        r = requests.get(url, allow_redirects=True)
-        retries += 1
-
-    if retries >= maxRetries:
-        print("Could not download", id, url)
+    if os.path.isfile(outputFile):
+        # Check if file exists
+        print("File exists", outputFile)
     else:
-        with open(outputFile, 'wb') as f:
-            f.write(r.content)
+        r = requests.get(url, allow_redirects=True)
+        retries = 1
+        while not 'image' in r.headers['Content-Type'] and retries <= maxRetries:
+            # Try again if no image comes back
+            time.sleep(1)
+            r = requests.get(url, allow_redirects=True)
+            retries += 1
+
+        if retries >= maxRetries:
+            print("Could not download", id, url)
+        else:
+            with open(outputFile, 'wb') as f:
+                f.write(r.content)
