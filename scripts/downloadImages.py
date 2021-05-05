@@ -24,10 +24,8 @@ for row in tqdm(data[offset:offset + limit]):
     id = row['id'][len("https://resource.swissartresearch.net/artwork/"):]
     url = row['image']
     outputFile = '%s/%s.tif' % (outputFolder, id)
-    if os.path.isfile(outputFile):
-        # Check if file exists
-        print("File exists", outputFile)
-    else:
+    # Check if file exists
+    if not os.path.isfile(outputFile):
         r = requests.get(url, allow_redirects=True)
         retries = 1
         while not 'image' in r.headers['Content-Type'] and retries <= maxRetries:
