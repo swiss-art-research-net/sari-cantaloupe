@@ -15,4 +15,10 @@ Place images in `images` directory.
 
 ## Download images
 
-Execute the image download script via the docker container
+Execute the image download script via the docker container:
+
+`docker exec bso_iiif_jobs python downloadImages.py`
+
+The script takes two optional parameters to specify a limit (the number of images to download) and an offset (the number of the line in the csv where the download should start). E.g. download 10 images, starting from the 20th:
+
+`docker exec bso_iiif_jobs python downloadImages.py 10 20`
