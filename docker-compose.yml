@@ -2,6 +2,7 @@ version: "3"
 services:
     cantaloupe:
         build: .
+        container_name: ${PROJECT_NAME}_cantaloupe
         image: swissartresearx/cantaloupe:5.0
         ports:
             - ${PORT_CANTALOUPE}:8182
