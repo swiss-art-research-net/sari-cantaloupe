@@ -24,14 +24,17 @@ for row in tqdm(data[offset:offset + limit]):
     id = row['id'][len("https://resource.swissartresearch.net/artwork/"):]
     url = row['image']
     outputFile = '%s/%s.tif' % (outputFolder, id)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0'
+    }
     # Check if file exists
     if not os.path.isfile(outputFile):
-        r = requests.get(url, allow_redirects=True)
+        r = requests.get(url, allow_redirects=True, headers=headers)
         retries = 1
         while not 'image' in r.headers['Content-Type'] and retries <= maxRetries:
             # Try again if no image comes back
             time.sleep(1)
-            r = requests.get(url, allow_redirects=True)
+            r = requests.get(url, allow_redirects=True, headers=headers)
             retries += 1
 
         if retries >= maxRetries:
