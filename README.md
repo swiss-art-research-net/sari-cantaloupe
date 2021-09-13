@@ -7,7 +7,7 @@ A Docker configuration of the [Cantaloupe](https://cantaloupe-project.github.io/
 Copy and edit .env.example file:
 `cp .env.example .env`
 
-(optional) Edit configuration stored in `config/cantaloupe.properties`
+(optional) Edit configuration stored in `config/cantaloupe.properties` (e.g. enabling Admin Control Panel) 
 
 Start with `docker-compose up -d`.
 
