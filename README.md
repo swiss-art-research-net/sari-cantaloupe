@@ -7,11 +7,21 @@ A Docker configuration of the [Cantaloupe](https://cantaloupe-project.github.io/
 Copy and edit .env.example file:
 `cp .env.example .env`
 
-(optional) Edit configuration stored in `config/cantaloupe.properties`
+(optional) Edit configuration stored in `config/cantaloupe.properties` (e.g. enabling Admin Control Panel) 
 
 Start with `docker-compose up -d`.
 
 Place images in `images` directory.
+
+## Download images
+
+Execute the image download script via the docker container:
+
+`docker exec bso_iiif_jobs python downloadImages_grp.py yourImageFile.csv`
+
+The script takes one mandatory and two optional arguments. The mandatory argument specifies the name of the csv file. The csv files with ids and urls of the images for download should be located in the `data` folder. Optional arguments allow to specify an offset (the number of the line in the csv where the download should start) and a limit (the number of images to download) . E.g. download 10 images, starting from the 20th:
+
+`docker exec bso_iiif_jobs python downloadImages.py yourImageFile.csv 20 10`
 
 ## Configure Proxy
 
