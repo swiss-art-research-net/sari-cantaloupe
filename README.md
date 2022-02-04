@@ -23,6 +23,8 @@ The script takes one mandatory and two optional arguments. The mandatory argumen
 
 `docker exec bso_iiif_jobs python downloadImages.py yourImageFile.csv 20 10`
 
+The images are organized in subfolders (300 images per folder) with naming pattern as the following: date of folder creation (yyyy_mm_dd) and batch number (e.g. 2022_02_01_1). 
+
 ## Configure Proxy
 
 If Cantaloupe is behind a reverse proxy, CORS settings need to be set in order for it to function correctly with IIIF image viewers. For [our Nginx](https://github.com/swiss-art-research-net/sari-nginx) configuration, create a _location_ overwrite by creating a file in the `vhost.d` directory with the name of the virtual host followed by `_location`. e.g. for https://iiif.swissartresearch.net the file should be called `iiif.swissartresearch.net_location`. Specify the CORS settings in this file, for example as follows:
