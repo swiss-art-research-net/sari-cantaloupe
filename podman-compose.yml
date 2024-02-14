@@ -12,6 +12,8 @@ services:
         networks:
         - proxy
         restart: always
+        ports:
+        - ${PORT_CANTALOUPE}:8182
         volumes:
             - ./config:/config
             - ./images:/images
