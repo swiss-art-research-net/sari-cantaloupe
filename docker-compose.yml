@@ -5,8 +5,6 @@ services:
         container_name: ${PROJECT_NAME}_cantaloupe
         image: swissartresearx/cantaloupe:5.0
         restart: always
-        ports:
-            - ${PORT_CANTALOUPE}:8182
         volumes:
             - ./config:/config
             - ./images:/images
