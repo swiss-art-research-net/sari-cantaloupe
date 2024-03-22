@@ -13,6 +13,19 @@ Start with `docker-compose up -d`.
 
 Place images in `images` directory.
 
+## Download images
+
+Execute the image download script via the docker container:
+
+`docker exec bso_iiif_jobs python downloadImages.py`
+
+The script expects a csv file `images.csv` in the `/data` folder. It is expected to contain the following columns:
+- `id`: the URI of the artwork starting with `https://resource.swissartresearch.net/artwork/`
+- `image`: the URL of the image that should be downloaded.
+
+The script takes two optional parameters to specify an offset (the number of the line in the csv where the download should start) and a limit (the number of images to download) . E.g. download 10 images, starting from the 20th:
+
+`docker exec bso_iiif_jobs python downloadImages.py 20 10`
 ## Configure Proxy
 
 If Cantaloupe is behind a reverse proxy, CORS settings need to be set in order for it to function correctly with IIIF image viewers. For [our Nginx](https://github.com/swiss-art-research-net/sari-nginx) configuration, create a _location_ overwrite by creating a file in the `vhost.d` directory with the name of the virtual host followed by `_location`. e.g. for https://iiif.swissartresearch.net the file should be called `iiif.swissartresearch.net_location`. Specify the CORS settings in this file, for example as follows:

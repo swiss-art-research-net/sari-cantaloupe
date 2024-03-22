@@ -8,3 +8,11 @@ services:
         volumes:
             - ./config:/config
             - ./images:/images
+    jobs:
+        build: ./services/jobs
+        container_name: ${PROJECT_NAME}_jobs
+        image: idsarideploy01.uzh.ch/swissartresearx/sari-cantaloupe-bso-jobs
+        volumes:
+          - ./data:/data
+          - ./images:/images
+          - ./scripts:/scripts
