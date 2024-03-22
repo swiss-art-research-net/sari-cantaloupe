@@ -1,13 +1,22 @@
 version: "3"
 services:
     cantaloupe:
+        build: .
+        container_name: ${PROJECT_NAME}_cantaloupe
         environment:
             LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
             LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
             VIRTUAL_HOST: ${LETSENCRYPT_HOST}
             VIRTUAL_PORT: 8182
+        image: swissartresearx/cantaloupe:5.0
         networks:
         - proxy
+        restart: always
+        ports:
+        - ${PORT_CANTALOUPE}:8182
+        volumes:
+            - ./config:/config
+            - ./images:/images
 
 networks:
   proxy:
