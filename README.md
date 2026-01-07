@@ -9,7 +9,7 @@ Copy and edit .env.example file:
 
 (optional) Edit configuration stored in `config/cantaloupe.properties`
 
-Start with `docker-compose up -d`.
+Start with `docker compose up -d`.
 
 Place images in `images` directory.
 
